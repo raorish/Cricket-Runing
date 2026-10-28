@@ -1,5 +1,5 @@
 // Raorish Run: works offline after the first visit.
-const V='run-v1';
+const V='run-v2';
 const SHELL=['./','./index.html','./logo.svg','./icon-192.png','./manifest.json'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>Promise.all(SHELL.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
